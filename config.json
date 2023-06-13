@@ -1,0 +1,12 @@
+{
+    "monitor" : {
+        "ip": "monitor-sphinx.shardeum.org",
+        "port": 3000,
+        "username": "",
+        "password": ""
+    },
+    "archiver": {
+        "ip": "archiver-sphinx.shardeum.org",
+        "port": 4000
+    }
+}
