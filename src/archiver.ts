@@ -33,4 +33,19 @@ export function registerArchiverCommands(program: Command) {
             console.log(difference)
             console.log(difference.length)
         })
+    
+    archiver
+        .command('search-syncing')
+        .description('Search missing nodes in monitor syncing list')
+        .action(async () => {
+            const [monitorNodes, archiverNodes] = await Promise.all([getMonitorNodes(), getArchiverNodes()])
+            const archiverIds = archiverNodes.nodeList.map(node => node.id)
+
+            const difference = archiverIds.filter(id => !monitorNodes.nodes.active[id])
+            console.log(`Total missing nodes: ${difference.length}`)
+            const found = difference.filter(id => monitorNodes.nodes.syncing[id])
+            console.log(found)
+            console.log(found.length)
+        })
+
 }
